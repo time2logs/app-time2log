@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: app-time2log-backend-test
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:54321/auth/v1
+          public-key-location: classpath:test-public-key.pem
+
+supabase:
+  url: http://localhost:54321
+  anon-key: test-anon-key
+  service-role-key: test-service-role-key
+
+cors:
+  allowed-origins: http://localhost:3000
+
+server:
+  port: 0
+
+logging:
+  level:
+    root: WARN
+    ch.time2log: DEBUG

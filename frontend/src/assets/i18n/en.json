@@ -1,0 +1,168 @@
+{
+  "common": {
+    "loading": "Loading...",
+    "back": "Back",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit"
+  },
+  "auth": {
+    "login": {
+      "title": "Sign In",
+      "email": "Email",
+      "password": "Password",
+      "submit": "Sign In",
+      "error": "Invalid email or password.",
+      "google": "Continue with Google",
+      "orDivider": "or",
+      "noAccount": "Don't have an account?",
+      "registerLink": "Sign up now",
+      "emailNotConfirmed": {
+        "title": "Email confirmation required",
+        "message": "Please confirm your email address using the link we sent you."
+      }
+    },
+    "register": {
+      "title": "Sign Up",
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "email": "Email",
+      "password": "Password",
+      "submit": "Create Account",
+      "error": "Registration failed. Please try again.",
+      "google": "Continue with Google",
+      "hasAccount": "Already have an account?",
+      "loginLink": "Sign in now",
+      "success": {
+        "title": "Account created",
+        "message": "We've sent you an email. Please confirm your email address to sign in."
+      },
+      "emailExists": "This email address is already registered."
+    },
+    "validation": {
+      "emailInvalid": "Please enter a valid email address.",
+      "emailRequired": "Email is required.",
+      "passwordMin": "Password must be at least 6 characters.",
+      "passwordRequired": "Password is required.",
+      "firstNameMin": "First name must be at least 2 characters.",
+      "firstNameRequired": "First name is required.",
+      "lastNameMin": "Last name must be at least 2 characters.",
+      "lastNameRequired": "Last name is required."
+    },
+    "logout": "Sign Out"
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "welcome": "Welcome!",
+    "organizations": {
+      "title": "Organizations",
+      "description": "Manage and create organizations"
+    }
+  },
+  "organizations": {
+    "title": "Organizations",
+    "create": "New Organization",
+    "namePlaceholder": "Organization name",
+    "memberCount": "{{count}} members",
+    "empty": "No organizations yet"
+  },
+  "organizationDetail": {
+    "members": "Members",
+    "noMembers": "No members yet",
+    "invite": "Invite User",
+    "userIdPlaceholder": "User ID",
+    "roleMember": "Member",
+    "roleAdmin": "Admin",
+    "inviteButton": "Invite",
+    "inviteError": "Failed to invite user. Please check the User ID and try again.",
+    "inviteSuccess": "User invited successfully.",
+    "delete": "Delete Organization",
+    "deleteConfirm": "Are you sure? This action cannot be undone."
+  },
+  "organizationManaging": {
+    "tabs": {
+      "members": "Members",
+      "activities": "Activities",
+      "settings": "Settings"
+    },
+    "members": {
+      "title": "Members",
+      "noMembers": "No members yet.",
+      "inviteToggle": "Invite Member",
+      "userIdPlaceholder": "User ID",
+      "roleMember": "Member",
+      "roleAdmin": "Admin",
+      "inviteButton": "Invite",
+      "inviteError": "Failed to invite user. Please check the User ID and try again.",
+      "inviteSuccess": "User invited successfully.",
+      "remove": "Remove"
+    },
+    "activities": {
+      "title": "Activities",
+      "add": "Add Activity",
+      "empty": "No activities defined yet.",
+      "key": "Key",
+      "label": "Label",
+      "description": "Description",
+      "category": "Category",
+      "active": "Active",
+      "inactive": "Inactive",
+      "saveButton": "Save",
+      "deleteConfirm": "Delete this activity?",
+      "createError": "Failed to create activity.",
+      "updateError": "Failed to update activity.",
+      "deleteError": "Failed to delete activity."
+    },
+    "settings": {
+      "title": "Settings",
+      "general": "General",
+      "organizationName": "Organization Name",
+      "dangerZone": "Danger Zone",
+      "dangerDescription": "Irreversible actions for this organization.",
+      "deleteOrganization": "Delete Organization",
+      "deleteConfirm": "Are you sure? This action cannot be undone."
+    }
+  },
+  "errors": {
+    "generic": "Something went wrong. Please try again.",
+    "network": "Could not reach the server. Check your connection.",
+    "forbidden": "You don't have permission for this action.",
+    "FORBIDDEN_OPERATION": "You don't have permission for this action.",
+    "ACTIVITY_NOT_FOUND": "Activity not found.",
+    "MEMBER_NOT_FOUND": "Member not found."
+  },
+  "toast": {
+    "inviteSuccess": "Member invited successfully.",
+    "memberRemoved": "Member removed.",
+    "activityCreated": "Activity created.",
+    "activityUpdated": "Activity updated.",
+    "activityDeleted": "Activity deleted.",
+    "organizationCreated": "Organization created.",
+    "organizationDeleted": "Organization deleted."
+  },
+  "nav": {
+    "dashboard": "Dashboard",
+    "organizations": "Organization",
+    "entries": "Entries"
+  },
+  "settings": {
+    "title": "Settings",
+    "language": "Language",
+    "theme": "Theme",
+    "account": "Account",
+    "profile": {
+      "title": "Profile",
+      "userId": "User ID",
+      "userIdHint": "Share this ID to get invited to organizations.",
+      "copy": "Copy",
+      "copied": "Copied!"
+    },
+    "dangerZone": {
+      "title": "Danger Zone",
+      "description": "Deleting your account is permanent and cannot be undone. All your data will be removed.",
+      "deleteAccount": "Delete Account",
+      "deleteConfirm": "Are you sure? This will permanently delete your account."
+    }
+  }
+}

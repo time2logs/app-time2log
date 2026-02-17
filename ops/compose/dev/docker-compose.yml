@@ -1,0 +1,23 @@
+services:
+  app-time2log-backend-dev:
+    image: ghcr.io/time2logs/app-time2log/backend:dev-latest
+    container_name: app-time2log-backend-dev
+    env_file: ./.env.dev
+    expose:
+      - "9080"
+    networks:
+      - app-time2log-net
+    restart: always
+
+  app-time2log-frontend-dev:
+    image: ghcr.io/time2logs/app-time2log/frontend:dev-latest
+    container_name: app-time2log-frontend-dev
+    expose:
+      - "80"
+    networks:
+      - app-time2log-net
+    restart: always
+
+networks:
+  app-time2log-net:
+    external: true

@@ -1,0 +1,4 @@
+# Production Environment
+
+cors:
+  allowed-origins: https://time2log.app

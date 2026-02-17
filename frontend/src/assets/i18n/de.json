@@ -1,0 +1,168 @@
+{
+  "common": {
+    "loading": "Laden...",
+    "back": "Zurück",
+    "save": "Speichern",
+    "cancel": "Abbrechen",
+    "delete": "Löschen",
+    "edit": "Bearbeiten"
+  },
+  "auth": {
+    "login": {
+      "title": "Anmelden",
+      "email": "E-Mail",
+      "password": "Passwort",
+      "submit": "Anmelden",
+      "error": "E-Mail oder Passwort ist falsch.",
+      "google": "Weiter mit Google",
+      "orDivider": "oder",
+      "noAccount": "Noch kein Konto?",
+      "registerLink": "Jetzt registrieren",
+      "emailNotConfirmed": {
+        "title": "E-Mail-Bestätigung erforderlich",
+        "message": "Bitte bestätigen Sie Ihre E-Mail-Adresse über den Link, den wir Ihnen gesendet haben."
+      }
+    },
+    "register": {
+      "title": "Registrieren",
+      "firstName": "Vorname",
+      "lastName": "Nachnamen",
+      "email": "E-Mail",
+      "password": "Passwort",
+      "submit": "Konto erstellen",
+      "error": "Registrierung fehlgeschlagen. Bitte versuchen Sie es erneut.",
+      "google": "Weiter mit Google",
+      "hasAccount": "Bereits ein Konto?",
+      "loginLink": "Jetzt anmelden",
+      "success": {
+        "title": "Konto erstellt",
+        "message": "Wir haben Ihnen eine E-Mail gesendet. Bitte bestätigen Sie Ihre E-Mail-Adresse, um sich anzumelden."
+      },
+      "emailExists": "Diese E-Mail-Adresse ist bereits registriert."
+    },
+    "validation": {
+      "emailInvalid": "Bitte geben Sie eine gültige E-Mail-Adresse ein.",
+      "emailRequired": "E-Mail ist erforderlich.",
+      "passwordMin": "Passwort muss mindestens 6 Zeichen lang sein.",
+      "passwordRequired": "Passwort ist erforderlich.",
+      "firstNameMin": "Vorname muss mindestens 2 Zeichen lang sein.",
+      "firstNameRequired": "Vorname ist erforderlich.",
+      "lastNameMin": "Nachname muss mindestens 2 Zeichen lang sein.",
+      "lastNameRequired": "Nachname ist erforderlich."
+    },
+    "logout": "Abmelden"
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "welcome": "Willkommen!",
+    "organizations": {
+      "title": "Organisationen",
+      "description": "Organisationen verwalten und erstellen"
+    }
+  },
+  "organizations": {
+    "title": "Organisationen",
+    "create": "Neue Organisation",
+    "namePlaceholder": "Name der Organisation",
+    "memberCount": "{{count}} Mitglieder",
+    "empty": "Noch keine Organisationen vorhanden"
+  },
+  "organizationDetail": {
+    "members": "Mitglieder",
+    "noMembers": "Noch keine Mitglieder",
+    "invite": "Benutzer einladen",
+    "userIdPlaceholder": "Benutzer-ID",
+    "roleMember": "Mitglied",
+    "roleAdmin": "Admin",
+    "inviteButton": "Einladen",
+    "inviteError": "Einladung fehlgeschlagen. Bitte überprüfen Sie die Benutzer-ID und versuchen Sie es erneut.",
+    "inviteSuccess": "Benutzer erfolgreich eingeladen.",
+    "delete": "Organisation löschen",
+    "deleteConfirm": "Sind Sie sicher? Diese Aktion kann nicht rückgängig gemacht werden."
+  },
+  "organizationManaging": {
+    "tabs": {
+      "members": "Mitglieder",
+      "activities": "Aktivitäten",
+      "settings": "Einstellungen"
+    },
+    "members": {
+      "title": "Mitglieder",
+      "noMembers": "Noch keine Mitglieder.",
+      "inviteToggle": "Mitglied einladen",
+      "userIdPlaceholder": "Benutzer-ID",
+      "roleMember": "Mitglied",
+      "roleAdmin": "Admin",
+      "inviteButton": "Einladen",
+      "inviteError": "Einladung fehlgeschlagen. Bitte überprüfen Sie die Benutzer-ID und versuchen Sie es erneut.",
+      "inviteSuccess": "Benutzer erfolgreich eingeladen.",
+      "remove": "Entfernen"
+    },
+    "activities": {
+      "title": "Aktivitäten",
+      "add": "Aktivität hinzufügen",
+      "empty": "Noch keine Aktivitäten definiert.",
+      "key": "Schlüssel",
+      "label": "Bezeichnung",
+      "description": "Beschreibung",
+      "category": "Kategorie",
+      "active": "Aktiv",
+      "inactive": "Inaktiv",
+      "saveButton": "Speichern",
+      "deleteConfirm": "Diese Aktivität löschen?",
+      "createError": "Aktivität konnte nicht erstellt werden.",
+      "updateError": "Aktivität konnte nicht aktualisiert werden.",
+      "deleteError": "Aktivität konnte nicht gelöscht werden."
+    },
+    "settings": {
+      "title": "Einstellungen",
+      "general": "Allgemein",
+      "organizationName": "Organisationsname",
+      "dangerZone": "Gefahrenzone",
+      "dangerDescription": "Unwiderrufliche Aktionen für diese Organisation.",
+      "deleteOrganization": "Organisation löschen",
+      "deleteConfirm": "Sind Sie sicher? Diese Aktion kann nicht rückgängig gemacht werden."
+    }
+  },
+  "errors": {
+    "generic": "Etwas ist schiefgelaufen. Bitte versuche es erneut.",
+    "network": "Server nicht erreichbar. Prüfe deine Verbindung.",
+    "forbidden": "Keine Berechtigung für diese Aktion.",
+    "FORBIDDEN_OPERATION": "Keine Berechtigung für diese Aktion.",
+    "ACTIVITY_NOT_FOUND": "Aktivität nicht gefunden.",
+    "MEMBER_NOT_FOUND": "Mitglied nicht gefunden."
+  },
+  "toast": {
+    "inviteSuccess": "Mitglied erfolgreich eingeladen.",
+    "memberRemoved": "Mitglied entfernt.",
+    "activityCreated": "Aktivität erstellt.",
+    "activityUpdated": "Aktivität aktualisiert.",
+    "activityDeleted": "Aktivität gelöscht.",
+    "organizationCreated": "Organisation erstellt.",
+    "organizationDeleted": "Organisation gelöscht."
+  },
+  "nav": {
+    "dashboard": "Dashboard",
+    "organizations": "Organisation",
+    "entries": "Einträge"
+  },
+  "settings": {
+    "title": "Einstellungen",
+    "language": "Sprache",
+    "theme": "Design",
+    "account": "Konto",
+    "profile": {
+      "title": "Profil",
+      "userId": "Benutzer-ID",
+      "userIdHint": "Teile diese ID, um zu Organisationen eingeladen zu werden.",
+      "copy": "Kopieren",
+      "copied": "Kopiert!"
+    },
+    "dangerZone": {
+      "title": "Gefahrenzone",
+      "description": "Das Löschen deines Kontos ist dauerhaft und kann nicht rückgängig gemacht werden. Alle deine Daten werden entfernt.",
+      "deleteAccount": "Konto löschen",
+      "deleteConfirm": "Bist du sicher? Dein Konto wird unwiderruflich gelöscht."
+    }
+  }
+}
