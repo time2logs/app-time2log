@@ -55,10 +55,58 @@
   "dashboard": {
     "title": "Dashboard",
     "welcome": "Willkommen!",
+    "stats": {
+      "totalEntries": "Einträge gesamt",
+      "totalHours": "Stunden gesamt",
+      "weekHours": "Diese Woche",
+      "monthHours": "Diesen Monat"
+    },
+    "quickAction": {
+      "title": "Schneller Einstieg",
+      "description": "Erfasse jetzt deinen nächsten Zeiteintrag.",
+      "button": "Zu den Einträgen"
+    },
     "organizations": {
       "title": "Organisationen",
       "description": "Organisationen verwalten und erstellen"
-    }
+    },
+    "recentEntries": "Letzte Einträge",
+    "noRecentEntries": "Noch keine Einträge.",
+    "loading": "Wird geladen..."
+  },
+  "activitiesPage": {
+    "title": "Einträge",
+    "newEntry": "Neuer Eintrag",
+    "history": "Verlauf",
+    "empty": "Noch keine Einträge vorhanden.",
+    "organization": "Organisation",
+    "profession": "Beruf",
+    "team": "Team",
+    "teamOptional": "Kein Team",
+    "activity": "Aktivität",
+    "date": "Datum",
+    "hours": "Stunden",
+    "notes": "Notizen",
+    "rating": "Bewertung",
+    "ratingOptional": "Keine Bewertung",
+    "save": "Eintrag speichern",
+    "edit": "Bearbeiten",
+    "editTitle": "Eintrag bearbeiten",
+    "cancelEdit": "Bearbeiten abbrechen",
+    "update": "Aktualisieren",
+    "deleteConfirm": "Wirklich löschen?",
+    "confirmDelete": "Ja, löschen",
+    "cancelDelete": "Abbrechen",
+    "filterFrom": "Von",
+    "filterTo": "Bis",
+    "filterThisMonth": "Dieser Monat",
+    "filterLast30": "Letzte 30 Tage",
+    "resetFilter": "Filter zurücksetzen",
+    "loading": "Wird geladen...",
+    "chooseActivity": "Aktivität wählen",
+    "changeActivity": "Aktivität ändern",
+    "recentEntries": "Letzte Einträge",
+    "notesPlaceholder": "Optional..."
   },
   "organizations": {
     "title": "Organisationen",
@@ -130,7 +178,8 @@
     "forbidden": "Keine Berechtigung für diese Aktion.",
     "FORBIDDEN_OPERATION": "Keine Berechtigung für diese Aktion.",
     "ACTIVITY_NOT_FOUND": "Aktivität nicht gefunden.",
-    "MEMBER_NOT_FOUND": "Mitglied nicht gefunden."
+    "MEMBER_NOT_FOUND": "Mitglied nicht gefunden.",
+    "ACTIVITY_RECORD_NOT_FOUND": "Eintrag nicht gefunden."
   },
   "toast": {
     "inviteSuccess": "Mitglied erfolgreich eingeladen.",
@@ -139,12 +188,43 @@
     "activityUpdated": "Aktivität aktualisiert.",
     "activityDeleted": "Aktivität gelöscht.",
     "organizationCreated": "Organisation erstellt.",
-    "organizationDeleted": "Organisation gelöscht."
+    "organizationDeleted": "Organisation gelöscht.",
+    "entryCreated": "Eintrag gespeichert.",
+    "entryDeleted": "Eintrag gelöscht.",
+    "entryUpdated": "Eintrag aktualisiert."
   },
   "nav": {
     "dashboard": "Dashboard",
     "organizations": "Organisation",
-    "entries": "Einträge"
+    "entries": "Einträge",
+    "reports": "Berichte"
+  },
+  "reports": {
+    "title": "Berichte",
+    "orgLabel": "Organisation",
+    "dateRange": "Zeitraum",
+    "presetThisWeek": "Diese Woche",
+    "presetThisMonth": "Dieser Monat",
+    "presetLastMonth": "Letzter Monat",
+    "presetThisYear": "Dieses Jahr",
+    "presetCustom": "Benutzerdefiniert",
+    "from": "Von",
+    "to": "Bis",
+    "stats": {
+      "totalHours": "Stunden gesamt",
+      "totalEntries": "Einträge gesamt",
+      "activeDays": "Aktive Tage",
+      "avgHoursPerDay": "Ø Stunden / Tag"
+    },
+    "byActivity": "Nach Aktivität",
+    "byProfession": "Nach Beruf",
+    "byMonth": "Monatsverlauf",
+    "colActivity": "Aktivität",
+    "colEntries": "Einträge",
+    "colHours": "Stunden",
+    "colAvgRating": "Ø Bewertung",
+    "colProfession": "Beruf",
+    "empty": "Keine Einträge für den gewählten Zeitraum."
   },
   "settings": {
     "title": "Einstellungen",

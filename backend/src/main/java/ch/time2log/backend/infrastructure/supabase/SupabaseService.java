@@ -41,6 +41,7 @@ public class SupabaseService {
     }
 
     public <T> T post(String table, Object body, Class<T> responseType) {
+        System.out.println("Posting to " + table + " with body: " + body + " and token: " + getCurrentUserToken());
         return client.post(table, body, getCurrentUserToken(), responseType).block();
     }
 

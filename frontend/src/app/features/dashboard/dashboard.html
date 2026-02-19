@@ -1,0 +1,102 @@
+<div class="max-w-4xl mx-auto">
+  <h1 class="text-2xl md:text-3xl font-semibold mb-1">{{ 'dashboard.title' | translate }}</h1>
+
+  <!-- Org selector -->
+  @if (organizations().length > 1) {
+    <div class="mb-4">
+      <select
+        class="w-full md:w-auto px-3 py-2 bg-white border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-sm"
+        [value]="selectedOrganizationId()"
+        (change)="onOrgChange($any($event.target).value)"
+      >
+        @for (org of organizations(); track org.id) {
+          <option [value]="org.id">{{ org.name }}</option>
+        }
+      </select>
+    </div>
+  } @else if (organizations().length === 1) {
+    <div class="mb-4 flex items-center gap-2">
+      <span class="text-xs text-gray-400 uppercase tracking-wide">{{ 'activitiesPage.organization' | translate }}</span>
+      <span class="text-sm font-medium text-gray-700 bg-white border border-gray-200 rounded-lg px-3 py-1 shadow-sm">{{ currentOrganizationName() }}</span>
+    </div>
+  }
+
+  @if (isLoading()) {
+    <!-- Skeleton: 2×2 on mobile, 4 cols on desktop -->
+    <div class="grid grid-cols-2 gap-3 lg:grid-cols-4 mb-5">
+      @for (i of [1, 2, 3, 4]; track i) {
+        <div class="bg-white border border-gray-200 rounded-xl shadow-sm p-4 animate-pulse">
+          <div class="h-2.5 bg-gray-200 rounded w-3/4 mb-3"></div>
+          <div class="h-7 bg-gray-200 rounded w-1/2"></div>
+        </div>
+      }
+    </div>
+    <div class="bg-white border border-gray-200 rounded-xl shadow-sm p-4 animate-pulse">
+      <div class="h-3 bg-gray-200 rounded w-1/4 mb-4"></div>
+      <div class="space-y-3">
+        @for (i of [1, 2, 3]; track i) {
+          <div class="h-2.5 bg-gray-200 rounded w-full"></div>
+        }
+      </div>
+    </div>
+
+  } @else {
+    <!-- Stats: 2×2 on mobile, 4 on desktop -->
+    <div class="grid grid-cols-2 gap-3 lg:grid-cols-4 mb-5">
+      <div class="bg-white border border-gray-200 rounded-xl shadow-sm p-4">
+        <p class="text-xs text-gray-500 leading-tight">{{ 'dashboard.stats.totalEntries' | translate }}</p>
+        <p class="text-2xl md:text-3xl font-semibold text-gray-900 mt-1.5">{{ records().length }}</p>
+      </div>
+      <div class="bg-white border border-gray-200 rounded-xl shadow-sm p-4">
+        <p class="text-xs text-gray-500 leading-tight">{{ 'dashboard.stats.totalHours' | translate }}</p>
+        <p class="text-2xl md:text-3xl font-semibold text-gray-900 mt-1.5">{{ totalHours() }}h</p>
+      </div>
+      <div class="bg-white border border-gray-200 rounded-xl shadow-sm p-4">
+        <p class="text-xs text-gray-500 leading-tight">{{ 'dashboard.stats.weekHours' | translate }}</p>
+        <p class="text-2xl md:text-3xl font-semibold text-gray-900 mt-1.5">{{ thisWeekHours() }}h</p>
+      </div>
+      <div class="bg-white border border-gray-200 rounded-xl shadow-sm p-4">
+        <p class="text-xs text-gray-500 leading-tight">{{ 'dashboard.stats.monthHours' | translate }}</p>
+        <p class="text-2xl md:text-3xl font-semibold text-gray-900 mt-1.5">{{ thisMonthHours() }}h</p>
+      </div>
+    </div>
+
+    <!-- Quick action -->
+    <div class="bg-white border border-gray-200 rounded-xl shadow-sm p-4 flex items-center justify-between gap-4 mb-5">
+      <div>
+        <h2 class="text-base font-medium text-gray-800">{{ 'dashboard.quickAction.title' | translate }}</h2>
+        <p class="text-sm text-gray-500">{{ 'dashboard.quickAction.description' | translate }}</p>
+      </div>
+      <a
+        routerLink="/activities"
+        class="shrink-0 px-4 py-2 bg-blue-500 text-white text-sm font-medium rounded-xl hover:bg-blue-600 transition-colors"
+      >
+        {{ 'dashboard.quickAction.button' | translate }}
+      </a>
+    </div>
+
+    <!-- Recent entries -->
+    <section class="bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden mb-5">
+      <div class="px-4 py-3 border-b border-gray-100">
+        <h2 class="text-sm font-semibold text-gray-700">{{ 'dashboard.recentEntries' | translate }}</h2>
+      </div>
+
+      @if (recentRecords().length === 0) {
+        <p class="px-4 py-5 text-sm text-gray-400">{{ 'dashboard.noRecentEntries' | translate }}</p>
+      } @else {
+        <!-- Mobile: stacked rows -->
+        <div class="divide-y divide-gray-100">
+          @for (record of recentRecords(); track record.id) {
+            <div class="flex items-center justify-between px-4 py-3 gap-3">
+              <div class="min-w-0">
+                <div class="text-sm font-medium text-gray-900 truncate">{{ getActivityLabel(record.curriculumActivityId) }}</div>
+                <div class="text-xs text-gray-400 mt-0.5">{{ record.entryDate }}</div>
+              </div>
+              <span class="text-sm font-semibold text-gray-600 shrink-0">{{ record.hours }}h</span>
+            </div>
+          }
+        </div>
+      }
+    </section>
+  }
+</div>

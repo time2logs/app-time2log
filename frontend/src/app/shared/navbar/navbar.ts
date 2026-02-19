@@ -9,23 +9,6 @@ import { LanguageService } from '@services/language.service';
   standalone: true,
   imports: [RouterLink, RouterLinkActive, TranslateModule],
   templateUrl: './navbar.html',
-  styles: [`
-    span.svg-active svg g {
-      stroke: #3b82f6;
-    }
-
-    span.svg-active svg circle {
-      stroke: #3b82f6;
-    }
-
-    span.svg-active svg path {
-      stroke: #3b82f6;
-    }
-
-    span.svg-active svg text {
-      fill: #3b82f6;
-    }
-  `],
 })
 export class HeaderComponent {
   protected readonly authService = inject(AuthService);

@@ -1,7 +1,7 @@
 package ch.time2log.backend.api.rest;
 
 import ch.time2log.backend.api.rest.dto.outbound.ProfileDto;
-import ch.time2log.backend.api.rest.exception.EntityNotFoundException;
+import ch.time2log.backend.domain.exception.EntityNotFoundException;
 import ch.time2log.backend.infrastructure.supabase.SupabaseAdminClient;
 import ch.time2log.backend.infrastructure.supabase.SupabaseService;
 import ch.time2log.backend.infrastructure.supabase.responses.ProfileResponse;

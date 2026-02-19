@@ -1,0 +1,311 @@
+<div class="max-w-lg mx-auto">
+  <h1 class="text-2xl font-semibold mb-5">{{ 'activitiesPage.title' | translate }}</h1>
+
+  <!-- New Entry Card -->
+  <div class="bg-white border border-gray-200 rounded-2xl shadow-sm overflow-hidden mb-6">
+
+    <!-- Date -->
+    <div class="px-5 pt-5 pb-4 border-b border-gray-100">
+      <label class="block text-xs font-medium text-gray-400 uppercase tracking-wider mb-1">
+        {{ 'activitiesPage.date' | translate }}
+      </label>
+      <input
+        type="date"
+        class="text-lg font-semibold text-gray-900 bg-transparent border-0 p-0 focus:outline-none w-full"
+        [ngModel]="entryDate()"
+        (ngModelChange)="entryDate.set($event)"
+      />
+    </div>
+
+    <!-- Category Browser -->
+    <div class="px-5 py-4" [class.border-b]="selectedActivity()" [class.border-gray-100]="selectedActivity()">
+
+      @if (!selectedActivity()) {
+        <!-- Breadcrumb / header -->
+        <div class="flex items-center gap-2 mb-4">
+          @if (currentParent()) {
+            <button
+              class="flex items-center gap-1.5 text-sm font-medium text-blue-600 hover:text-blue-800 transition-colors"
+              (click)="navigateBack()"
+            >
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+                <path d="M15 18l-6-6 6-6"/>
+              </svg>
+              {{ currentParent()!.label }}
+            </button>
+          } @else {
+            <span class="text-sm font-medium text-gray-500">{{ 'activitiesPage.chooseActivity' | translate }}</span>
+          }
+        </div>
+
+        @if (isLoadingNodes()) {
+          <div class="py-6 flex justify-center">
+            <div class="w-5 h-5 border-2 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
+          </div>
+        } @else if (currentNodes().length === 0) {
+          <p class="py-4 text-center text-sm text-gray-400">{{ 'activitiesPage.empty' | translate }}</p>
+        } @else {
+          <div class="space-y-2">
+            @for (node of currentNodes(); track node.id) {
+              <button
+                class="w-full flex items-center justify-between px-4 py-3.5 rounded-xl border border-gray-200 hover:border-blue-300 hover:bg-blue-50 active:scale-[0.98] transition-all text-left"
+                (click)="selectNode(node)"
+              >
+                <span class="font-medium text-gray-800 text-sm">{{ node.label }}</span>
+                @if (node.nodeType === 'category') {
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" class="text-gray-400 shrink-0">
+                    <path d="M9 18l6-6-6-6"/>
+                  </svg>
+                } @else {
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" class="text-blue-400 shrink-0">
+                    <polyline points="20 6 9 17 4 12"/>
+                  </svg>
+                }
+              </button>
+            }
+          </div>
+        }
+
+      } @else {
+        <!-- Selected Activity Display -->
+        <div class="flex items-center justify-between">
+          <div>
+            <div class="text-xs font-medium text-gray-400 uppercase tracking-wider mb-0.5">
+              {{ 'activitiesPage.activity' | translate }}
+            </div>
+            <div class="font-semibold text-gray-900">{{ selectedActivity()!.label }}</div>
+          </div>
+          <button
+            class="p-2 rounded-xl text-gray-400 hover:text-gray-600 hover:bg-gray-100 transition-colors"
+            (click)="clearActivity()"
+            [attr.aria-label]="'activitiesPage.changeActivity' | translate"
+          >
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+              <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+              <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+            </svg>
+          </button>
+        </div>
+      }
+    </div>
+
+    @if (selectedActivity()) {
+      <!-- Hours -->
+      <div class="px-5 py-5 border-b border-gray-100">
+        <label class="block text-xs font-medium text-gray-400 uppercase tracking-wider mb-4">
+          {{ 'activitiesPage.hours' | translate }}
+        </label>
+        <div class="flex items-center gap-5">
+          <button
+            class="w-11 h-11 rounded-full bg-gray-100 hover:bg-gray-200 active:bg-gray-300 flex items-center justify-center text-2xl font-light text-gray-700 transition-colors disabled:opacity-30"
+            (click)="adjustHours(-1)"
+            [disabled]="hours() <= 1"
+          >−</button>
+          <span class="text-4xl font-bold text-gray-900 w-14 text-center tabular-nums">{{ hours() }}</span>
+          <button
+            class="w-11 h-11 rounded-full bg-gray-100 hover:bg-gray-200 active:bg-gray-300 flex items-center justify-center text-2xl font-light text-gray-700 transition-colors disabled:opacity-30"
+            (click)="adjustHours(1)"
+            [disabled]="hours() >= 24"
+          >+</button>
+          <span class="text-gray-400 font-medium">h</span>
+        </div>
+      </div>
+
+      <!-- Notes -->
+      <div class="px-5 py-4 border-b border-gray-100">
+        <label class="block text-xs font-medium text-gray-400 uppercase tracking-wider mb-2">
+          {{ 'activitiesPage.notes' | translate }}
+        </label>
+        <textarea
+          rows="3"
+          class="w-full text-gray-800 bg-transparent border-0 p-0 focus:outline-none resize-none text-sm placeholder-gray-300"
+          [placeholder]="'activitiesPage.notesPlaceholder' | translate"
+          [ngModel]="notes()"
+          (ngModelChange)="notes.set($event)"
+        ></textarea>
+      </div>
+
+      <!-- Save -->
+      <div class="px-5 py-4">
+        <button
+          class="w-full py-3.5 bg-blue-500 text-white font-semibold rounded-xl hover:bg-blue-600 active:bg-blue-700 transition-colors disabled:opacity-50 text-sm"
+          [disabled]="isSaving()"
+          (click)="saveEntry()"
+        >
+          {{ isSaving() ? ('common.loading' | translate) : ('activitiesPage.save' | translate) }}
+        </button>
+      </div>
+    }
+  </div>
+
+  <!-- Recent Entries -->
+  <section>
+    <h2 class="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-3">
+      {{ 'activitiesPage.recentEntries' | translate }}
+    </h2>
+
+    @if (records().length === 0) {
+      <p class="text-center text-sm text-gray-400 py-6">{{ 'activitiesPage.empty' | translate }}</p>
+    } @else {
+      <div class="space-y-2">
+        @for (record of records().slice(0, 5); track record.id) {
+          <div class="bg-white border border-gray-200 rounded-xl px-4 py-3.5 shadow-sm">
+
+            @if (deletingRecordId() === record.id) {
+              <div class="flex items-center justify-between gap-3">
+                <span class="text-sm text-gray-600 font-medium">{{ 'activitiesPage.deleteConfirm' | translate }}</span>
+                <div class="flex gap-2 shrink-0">
+                  <button
+                    class="px-3 py-1.5 text-xs font-medium text-white bg-red-500 hover:bg-red-600 rounded-lg transition-colors"
+                    (click)="confirmDelete(record.id)"
+                  >{{ 'activitiesPage.confirmDelete' | translate }}</button>
+                  <button
+                    class="px-3 py-1.5 text-xs font-medium text-gray-600 bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors"
+                    (click)="cancelDelete()"
+                  >{{ 'activitiesPage.cancelDelete' | translate }}</button>
+                </div>
+              </div>
+            } @else {
+              <div class="flex items-center justify-between">
+                <div class="min-w-0">
+                  <div class="font-medium text-gray-900 text-sm truncate">
+                    {{ getActivityLabel(record.curriculumActivityId) }}
+                  </div>
+                  <div class="text-xs text-gray-400 mt-0.5">
+                    {{ record.entryDate }} · {{ record.hours }}h
+                    @if (record.notes) {
+                      · <span class="italic">{{ record.notes }}</span>
+                    }
+                  </div>
+                </div>
+                <div class="flex gap-1 shrink-0 ml-3">
+                  <button
+                    class="p-2 rounded-lg text-gray-400 hover:text-blue-600 hover:bg-blue-50 transition-colors"
+                    (click)="startEdit(record)"
+                  >
+                    <i class="bi bi-pencil text-sm"></i>
+                  </button>
+                  <button
+                    class="p-2 rounded-lg text-gray-400 hover:text-red-600 hover:bg-red-50 transition-colors"
+                    (click)="requestDelete(record.id)"
+                  >
+                    <i class="bi bi-trash text-sm"></i>
+                  </button>
+                </div>
+              </div>
+            }
+          </div>
+        }
+      </div>
+    }
+  </section>
+</div>
+
+<!-- Edit Modal – Bottom sheet on mobile, centered on desktop -->
+@if (editingRecord()) {
+  <div
+    class="fixed inset-0 bg-black/40 z-50 flex items-end md:items-center justify-center"
+    (click)="cancelEdit()"
+  >
+    <div
+      class="relative bg-white w-full md:max-w-md rounded-t-2xl md:rounded-2xl shadow-2xl"
+      (click)="$event.stopPropagation()"
+    >
+      <!-- Drag indicator (mobile only) -->
+      <div class="md:hidden flex justify-center pt-3 pb-1">
+        <div class="w-10 h-1 bg-gray-200 rounded-full"></div>
+      </div>
+
+      <!-- Header -->
+      <div class="flex items-center justify-between px-5 py-4 border-b border-gray-100">
+        <h3 class="font-semibold text-gray-900">{{ 'activitiesPage.editTitle' | translate }}</h3>
+        <button
+          class="p-1.5 rounded-lg text-gray-400 hover:bg-gray-100 transition-colors"
+          (click)="cancelEdit()"
+        >
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+          </svg>
+        </button>
+      </div>
+
+      <div class="px-5 py-5 space-y-5">
+        <!-- Date -->
+        <div>
+          <label class="block text-xs font-medium text-gray-400 uppercase tracking-wider mb-1.5">
+            {{ 'activitiesPage.date' | translate }}
+          </label>
+          <input
+            type="date"
+            class="w-full px-3 py-2.5 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm bg-white"
+            [ngModel]="editDate()"
+            (ngModelChange)="editDate.set($event)"
+          />
+        </div>
+
+        <!-- Activity -->
+        <div>
+          <label class="block text-xs font-medium text-gray-400 uppercase tracking-wider mb-1.5">
+            {{ 'activitiesPage.activity' | translate }}
+          </label>
+          <select
+            class="w-full px-3 py-2.5 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm bg-white"
+            [ngModel]="editActivityId()"
+            (ngModelChange)="editActivityId.set($event)"
+          >
+            @for (act of allActivities(); track act.id) {
+              <option [value]="act.id">{{ act.label }}</option>
+            }
+          </select>
+        </div>
+
+        <!-- Hours -->
+        <div>
+          <label class="block text-xs font-medium text-gray-400 uppercase tracking-wider mb-3">
+            {{ 'activitiesPage.hours' | translate }}
+          </label>
+          <div class="flex items-center gap-5">
+            <button
+              class="w-11 h-11 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center text-2xl font-light text-gray-700 transition-colors disabled:opacity-30"
+              (click)="adjustEditHours(-1)"
+              [disabled]="editHours() <= 1"
+            >−</button>
+            <span class="text-4xl font-bold text-gray-900 w-14 text-center tabular-nums">{{ editHours() }}</span>
+            <button
+              class="w-11 h-11 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center text-2xl font-light text-gray-700 transition-colors disabled:opacity-30"
+              (click)="adjustEditHours(1)"
+              [disabled]="editHours() >= 24"
+            >+</button>
+            <span class="text-gray-400 font-medium">h</span>
+          </div>
+        </div>
+
+        <!-- Notes -->
+        <div>
+          <label class="block text-xs font-medium text-gray-400 uppercase tracking-wider mb-1.5">
+            {{ 'activitiesPage.notes' | translate }}
+          </label>
+          <textarea
+            rows="3"
+            class="w-full px-3 py-2.5 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm resize-none"
+            [ngModel]="editNotes()"
+            (ngModelChange)="editNotes.set($event)"
+          ></textarea>
+        </div>
+      </div>
+
+      <!-- Buttons -->
+      <div class="px-5 py-4 border-t border-gray-100 flex gap-3 pb-safe">
+        <button
+          class="flex-1 py-3 border border-gray-200 text-gray-700 rounded-xl font-medium text-sm hover:bg-gray-50 transition-colors"
+          (click)="cancelEdit()"
+        >{{ 'activitiesPage.cancelEdit' | translate }}</button>
+        <button
+          class="flex-1 py-3 bg-blue-500 text-white rounded-xl font-medium text-sm hover:bg-blue-600 transition-colors disabled:opacity-50"
+          [disabled]="isUpdating()"
+          (click)="saveEdit()"
+        >{{ 'activitiesPage.update' | translate }}</button>
+      </div>
+    </div>
+  </div>
+}

@@ -55,10 +55,58 @@
   "dashboard": {
     "title": "Dashboard",
     "welcome": "Welcome!",
+    "stats": {
+      "totalEntries": "Total entries",
+      "totalHours": "Total hours",
+      "weekHours": "This week",
+      "monthHours": "This month"
+    },
+    "quickAction": {
+      "title": "Quick start",
+      "description": "Log your next time entry now.",
+      "button": "Open entries"
+    },
     "organizations": {
       "title": "Organizations",
       "description": "Manage and create organizations"
-    }
+    },
+    "recentEntries": "Recent entries",
+    "noRecentEntries": "No entries yet.",
+    "loading": "Loading..."
+  },
+  "activitiesPage": {
+    "title": "Entries",
+    "newEntry": "New entry",
+    "history": "History",
+    "empty": "No entries yet.",
+    "organization": "Organization",
+    "profession": "Profession",
+    "team": "Team",
+    "teamOptional": "No team",
+    "activity": "Activity",
+    "date": "Date",
+    "hours": "Hours",
+    "notes": "Notes",
+    "rating": "Rating",
+    "ratingOptional": "No rating",
+    "save": "Save entry",
+    "edit": "Edit",
+    "editTitle": "Edit entry",
+    "cancelEdit": "Cancel edit",
+    "update": "Update",
+    "deleteConfirm": "Really delete?",
+    "confirmDelete": "Yes, delete",
+    "cancelDelete": "Cancel",
+    "filterFrom": "From",
+    "filterTo": "To",
+    "filterThisMonth": "This month",
+    "filterLast30": "Last 30 days",
+    "resetFilter": "Reset filter",
+    "loading": "Loading...",
+    "chooseActivity": "Select activity",
+    "changeActivity": "Change activity",
+    "recentEntries": "Recent entries",
+    "notesPlaceholder": "Optional..."
   },
   "organizations": {
     "title": "Organizations",
@@ -130,7 +178,8 @@
     "forbidden": "You don't have permission for this action.",
     "FORBIDDEN_OPERATION": "You don't have permission for this action.",
     "ACTIVITY_NOT_FOUND": "Activity not found.",
-    "MEMBER_NOT_FOUND": "Member not found."
+    "MEMBER_NOT_FOUND": "Member not found.",
+    "ACTIVITY_RECORD_NOT_FOUND": "Entry not found."
   },
   "toast": {
     "inviteSuccess": "Member invited successfully.",
@@ -139,12 +188,43 @@
     "activityUpdated": "Activity updated.",
     "activityDeleted": "Activity deleted.",
     "organizationCreated": "Organization created.",
-    "organizationDeleted": "Organization deleted."
+    "organizationDeleted": "Organization deleted.",
+    "entryCreated": "Entry saved.",
+    "entryDeleted": "Entry deleted.",
+    "entryUpdated": "Entry updated."
   },
   "nav": {
     "dashboard": "Dashboard",
     "organizations": "Organization",
-    "entries": "Entries"
+    "entries": "Entries",
+    "reports": "Reports"
+  },
+  "reports": {
+    "title": "Reports",
+    "orgLabel": "Organization",
+    "dateRange": "Date range",
+    "presetThisWeek": "This week",
+    "presetThisMonth": "This month",
+    "presetLastMonth": "Last month",
+    "presetThisYear": "This year",
+    "presetCustom": "Custom",
+    "from": "From",
+    "to": "To",
+    "stats": {
+      "totalHours": "Total hours",
+      "totalEntries": "Total entries",
+      "activeDays": "Active days",
+      "avgHoursPerDay": "Avg hours / day"
+    },
+    "byActivity": "By activity",
+    "byProfession": "By profession",
+    "byMonth": "Monthly timeline",
+    "colActivity": "Activity",
+    "colEntries": "Entries",
+    "colHours": "Hours",
+    "colAvgRating": "Avg rating",
+    "colProfession": "Profession",
+    "empty": "No entries for the selected period."
   },
   "settings": {
     "title": "Settings",

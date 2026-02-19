@@ -1,4 +1,4 @@
-import {inject, Injectable, OnDestroy} from '@angular/core';
+import { inject, Injectable, OnDestroy } from '@angular/core';
 import {
   AuthChangeEvent,
   AuthResponse,
@@ -10,8 +10,8 @@ import {
 import { navigatorLock } from '@supabase/auth-js/dist/module/lib/locks';
 import { environment } from '@env/environment';
 import { BehaviorSubject, from, Observable } from 'rxjs';
-import {Profile} from '@app/core/models/profile.models';
-import {HttpClient} from '@angular/common/http';
+import { Profile } from '@app/core/models/profile.models';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService implements OnDestroy {
@@ -38,8 +38,6 @@ export class AuthService implements OnDestroy {
         lock: (name, _acquireTimeout, fn) => navigatorLock(name, 5000, fn),
       },
     });
-    this.currentProfileSubject = new BehaviorSubject<Profile | null>(null);
-    this.currentProfile$ = this.currentProfileSubject.asObservable();
     this.initializeAuth();
   }
 
@@ -74,7 +72,9 @@ export class AuthService implements OnDestroy {
   }
 
   async getAccessToken(): Promise<string | null> {
-    const { data: { session } } = await this.supabase.auth.getSession();
+    const {
+      data: { session },
+    } = await this.supabase.auth.getSession();
     if (!session) return null;
 
     const expiresAt = session.expires_at ?? 0;
@@ -133,7 +133,7 @@ export class AuthService implements OnDestroy {
       next: (profile) => {
         this.currentProfileSubject.next(profile);
       },
-      error: (err) => console.error('Failed to load profile:', err)
+      error: (err) => console.error('Failed to load profile:', err),
     });
   }
 }
