@@ -124,8 +124,25 @@ export class AuthService implements OnDestroy {
     return from(this.supabase.auth.signOut().then(() => undefined));
   }
 
+  updateProfile(firstName: string, lastName: string): Observable<void> {
+    return this.http.patch<void>(`${environment.apiBaseUrl}/profile`, { firstName, lastName });
+  }
+
   deleteProfile(): Observable<void> {
     return this.http.delete<void>(`${environment.apiBaseUrl}/profile`);
+  }
+
+  async getInviteDetails(inviteToken: string): Promise<{ organization_name: string; email: string; role: string }> {
+    const { data, error } = await (this.supabase.schema('admin') as any)
+      .rpc('get_invite_details', { invite_token: inviteToken });
+    if (error) throw error;
+    return data;
+  }
+
+  async acceptInvite(inviteToken: string): Promise<void> {
+    const { error } = await (this.supabase.schema('admin') as any)
+      .rpc('accept_invite', { invite_token: inviteToken });
+    if (error) throw error;
   }
 
   loadProfile() {

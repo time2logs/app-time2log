@@ -199,6 +199,19 @@
     "entries": "Entries",
     "reports": "Reports"
   },
+  "onboarding": {
+    "welcomeTitle": "You've been invited!",
+    "welcomeSubtitle": "Set up your account and join the organization.",
+    "invitedAs": "Invited to",
+    "joinButton": "Join {{org}}",
+    "saving": "Saving...",
+    "doneTitle": "Welcome aboard!",
+    "doneDescription": "You will be redirected to the dashboard...",
+    "invalidTitle": "Invalid invitation",
+    "invalidDescription": "This invitation link is invalid. Please contact the administrator.",
+    "expiredTitle": "Invitation expired",
+    "expiredDescription": "This invitation link has expired. Please request a new invitation."
+  },
   "reports": {
     "title": "Reports",
     "orgLabel": "Organization",
