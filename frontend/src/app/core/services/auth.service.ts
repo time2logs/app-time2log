@@ -146,7 +146,7 @@ export class AuthService implements OnDestroy {
   }
 
   private adminRpc<T>(fn: string, args: Record<string, unknown>): Promise<{ data: T | null; error: { message: string } | null }> {
-    type AdminClient = { rpc(fn: string, args: Record<string, unknown>): Promise<{ data: T | null; error: { message: string } | null }> };
+    interface AdminClient { rpc(fn: string, args: Record<string, unknown>): Promise<{ data: T | null; error: { message: string } | null }> }
     return (this.supabase.schema('admin') as unknown as AdminClient).rpc(fn, args);
   }
 
