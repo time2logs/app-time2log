@@ -199,6 +199,19 @@
     "entries": "Einträge",
     "reports": "Berichte"
   },
+  "onboarding": {
+    "welcomeTitle": "Du wurdest eingeladen!",
+    "welcomeSubtitle": "Erstelle dein Konto und tritt der Organisation bei.",
+    "invitedAs": "Eingeladen in",
+    "joinButton": "{{org}} beitreten",
+    "saving": "Wird gespeichert...",
+    "doneTitle": "Willkommen an Bord!",
+    "doneDescription": "Du wirst zum Dashboard weitergeleitet...",
+    "invalidTitle": "Ungültige Einladung",
+    "invalidDescription": "Dieser Einladungslink ist ungültig. Bitte wende dich an den Administrator.",
+    "expiredTitle": "Einladung abgelaufen",
+    "expiredDescription": "Dieser Einladungslink ist abgelaufen. Bitte fordere eine neue Einladung an."
+  },
   "reports": {
     "title": "Berichte",
     "orgLabel": "Organisation",
