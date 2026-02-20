@@ -31,6 +31,10 @@ export class OnboardingPage implements OnInit {
   protected readonly inviteDetails = signal<InviteDetails | null>(null);
   protected readonly firstName = signal('');
   protected readonly lastName = signal('');
+  protected readonly password = signal('');
+  protected readonly confirmPassword = signal('');
+  protected readonly showPassword = signal(false);
+  protected readonly showConfirmPassword = signal(false);
   protected readonly validationError = signal<string | null>(null);
 
   private inviteToken = '';
@@ -81,6 +85,10 @@ export class OnboardingPage implements OnInit {
         this.authService.updateProfile(this.firstName().trim(), this.lastName().trim())
       );
 
+      await firstValueFrom(
+        this.authService.updatePassword(this.password())
+      );
+
       this.state.set('done');
       setTimeout(() => this.router.navigate(['/dashboard']), 2000);
     } catch {
@@ -96,6 +104,14 @@ export class OnboardingPage implements OnInit {
     }
     if (this.lastName().trim().length < 2) {
       this.validationError.set(this.translate.instant('auth.validation.lastNameMin'));
+      return false;
+    }
+    if (this.password().length < 6) {
+      this.validationError.set(this.translate.instant('auth.validation.passwordMin'));
+      return false;
+    }
+    if (this.password() !== this.confirmPassword()) {
+      this.validationError.set(this.translate.instant('onboarding.passwordMismatch'));
       return false;
     }
     this.validationError.set(null);

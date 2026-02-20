@@ -128,6 +128,14 @@ export class AuthService implements OnDestroy {
     return this.http.patch<void>(`${environment.apiBaseUrl}/profile`, { firstName, lastName });
   }
 
+  updatePassword(password: string): Observable<void> {
+    return from(
+      this.supabase.auth.updateUser({ password }).then(({ error }) => {
+        if (error) throw error;
+      })
+    );
+  }
+
   deleteProfile(): Observable<void> {
     return this.http.delete<void>(`${environment.apiBaseUrl}/profile`);
   }
