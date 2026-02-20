@@ -6,10 +6,11 @@
 
     <!-- Date -->
     <div class="px-5 pt-5 pb-4 border-b border-gray-100">
-      <label class="block text-xs font-medium text-gray-400 uppercase tracking-wider mb-1">
+      <label for="entry-date" class="block text-xs font-medium text-gray-400 uppercase tracking-wider mb-1">
         {{ 'activitiesPage.date' | translate }}
       </label>
       <input
+        id="entry-date"
         type="date"
         class="text-lg font-semibold text-gray-900 bg-transparent border-0 p-0 focus:outline-none w-full"
         [ngModel]="entryDate()"
@@ -92,9 +93,9 @@
     @if (selectedActivity()) {
       <!-- Hours -->
       <div class="px-5 py-5 border-b border-gray-100">
-        <label class="block text-xs font-medium text-gray-400 uppercase tracking-wider mb-4">
+        <p class="block text-xs font-medium text-gray-400 uppercase tracking-wider mb-4">
           {{ 'activitiesPage.hours' | translate }}
-        </label>
+        </p>
         <div class="flex items-center gap-5">
           <button
             class="w-11 h-11 rounded-full bg-gray-100 hover:bg-gray-200 active:bg-gray-300 flex items-center justify-center text-2xl font-light text-gray-700 transition-colors disabled:opacity-30"
@@ -113,10 +114,11 @@
 
       <!-- Notes -->
       <div class="px-5 py-4 border-b border-gray-100">
-        <label class="block text-xs font-medium text-gray-400 uppercase tracking-wider mb-2">
+        <label for="entry-notes" class="block text-xs font-medium text-gray-400 uppercase tracking-wider mb-2">
           {{ 'activitiesPage.notes' | translate }}
         </label>
         <textarea
+          id="entry-notes"
           rows="3"
           class="w-full text-gray-800 bg-transparent border-0 p-0 focus:outline-none resize-none text-sm placeholder-gray-300"
           [placeholder]="'activitiesPage.notesPlaceholder' | translate"
@@ -205,11 +207,16 @@
 @if (editingRecord()) {
   <div
     class="fixed inset-0 bg-black/40 z-50 flex items-end md:items-center justify-center"
+    role="presentation"
+    tabindex="0"
     (click)="cancelEdit()"
+    (keyup.escape)="cancelEdit()"
   >
     <div
       class="relative bg-white w-full md:max-w-md rounded-t-2xl md:rounded-2xl shadow-2xl"
+      tabindex="-1"
       (click)="$event.stopPropagation()"
+      (keydown)="$event.stopPropagation()"
     >
       <!-- Drag indicator (mobile only) -->
       <div class="md:hidden flex justify-center pt-3 pb-1">
@@ -232,10 +239,11 @@
       <div class="px-5 py-5 space-y-5">
         <!-- Date -->
         <div>
-          <label class="block text-xs font-medium text-gray-400 uppercase tracking-wider mb-1.5">
+          <label for="edit-date" class="block text-xs font-medium text-gray-400 uppercase tracking-wider mb-1.5">
             {{ 'activitiesPage.date' | translate }}
           </label>
           <input
+            id="edit-date"
             type="date"
             class="w-full px-3 py-2.5 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm bg-white"
             [ngModel]="editDate()"
@@ -245,10 +253,11 @@
 
         <!-- Activity -->
         <div>
-          <label class="block text-xs font-medium text-gray-400 uppercase tracking-wider mb-1.5">
+          <label for="edit-activity" class="block text-xs font-medium text-gray-400 uppercase tracking-wider mb-1.5">
             {{ 'activitiesPage.activity' | translate }}
           </label>
           <select
+            id="edit-activity"
             class="w-full px-3 py-2.5 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm bg-white"
             [ngModel]="editActivityId()"
             (ngModelChange)="editActivityId.set($event)"
@@ -261,9 +270,9 @@
 
         <!-- Hours -->
         <div>
-          <label class="block text-xs font-medium text-gray-400 uppercase tracking-wider mb-3">
+          <p class="block text-xs font-medium text-gray-400 uppercase tracking-wider mb-3">
             {{ 'activitiesPage.hours' | translate }}
-          </label>
+          </p>
           <div class="flex items-center gap-5">
             <button
               class="w-11 h-11 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center text-2xl font-light text-gray-700 transition-colors disabled:opacity-30"
@@ -282,10 +291,11 @@
 
         <!-- Notes -->
         <div>
-          <label class="block text-xs font-medium text-gray-400 uppercase tracking-wider mb-1.5">
+          <label for="edit-notes" class="block text-xs font-medium text-gray-400 uppercase tracking-wider mb-1.5">
             {{ 'activitiesPage.notes' | translate }}
           </label>
           <textarea
+            id="edit-notes"
             rows="3"
             class="w-full px-3 py-2.5 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm resize-none"
             [ngModel]="editNotes()"

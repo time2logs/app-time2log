@@ -62,8 +62,8 @@ export class OnboardingPage implements OnInit {
       const details = await this.authService.getInviteDetails(this.inviteToken);
       this.inviteDetails.set(details);
       this.state.set('ready');
-    } catch (err: any) {
-      const msg = (err?.message ?? '').toLowerCase();
+    } catch (err: unknown) {
+      const msg = ((err as { message?: string })?.message ?? '').toLowerCase();
       this.state.set(msg.includes('expired') ? 'expired' : 'invalid');
     }
   }
