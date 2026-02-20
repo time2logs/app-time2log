@@ -133,16 +133,21 @@ export class AuthService implements OnDestroy {
   }
 
   async getInviteDetails(inviteToken: string): Promise<{ organization_name: string; email: string; role: string }> {
-    const { data, error } = await (this.supabase.schema('admin') as any)
-      .rpc('get_invite_details', { invite_token: inviteToken });
+    const { data, error } = await this.adminRpc<{ organization_name: string; email: string; role: string }>(
+      'get_invite_details', { invite_token: inviteToken }
+    );
     if (error) throw error;
-    return data;
+    return data!;
   }
 
   async acceptInvite(inviteToken: string): Promise<void> {
-    const { error } = await (this.supabase.schema('admin') as any)
-      .rpc('accept_invite', { invite_token: inviteToken });
+    const { error } = await this.adminRpc<null>('accept_invite', { invite_token: inviteToken });
     if (error) throw error;
+  }
+
+  private adminRpc<T>(fn: string, args: Record<string, unknown>): Promise<{ data: T | null; error: { message: string } | null }> {
+    type AdminClient = { rpc(fn: string, args: Record<string, unknown>): Promise<{ data: T | null; error: { message: string } | null }> };
+    return (this.supabase.schema('admin') as unknown as AdminClient).rpc(fn, args);
   }
 
   loadProfile() {
